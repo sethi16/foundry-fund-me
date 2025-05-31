@@ -12,6 +12,7 @@ contract FundMeTest is Test {
     address user;
     uint256 transferFund = 6 ether;
     uint256 send = 0.1 ether;   
+    uint256 constant GAS = 1;
     
 
     modifier funded(){
@@ -78,8 +79,15 @@ contract FundMeTest is Test {
                 fundMe.fund{value: send}(); // here i called many address to fund, all the address will be funded
             }
             // Act
+                uint256 gasStart = gasleft(); // gasleft() it's a predefined dunction in forge std library
+                vm.txGasPrice(GAS);
                 vm.startPrank(fundMe.getOwner()); // here i called the owner of the fundMe contract
                 fundMe.cheaperwithdraw(); // here i called the withdraw function
+
+                uint256 gasEnd = gasleft();
+                uint256 gasUsed = (gasStart - gasEnd) * tx.gasprice;
+                console.log("gasUsed", gasUsed); 
+
                 assertEq(address(fundMe).balance, 0); // here i checked if the balance of fundMe is 0 or not
                 vm.stopPrank();
                //Assert
