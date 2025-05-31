@@ -79,7 +79,7 @@ contract FundMeTest is Test {
                 fundMe.fund{value: send}(); // here i called many address to fund, all the address will be funded
             }
             // Act
-                uint256 gasStart = gasleft(); // gasleft() it's a predefined dunction in forge std library
+                uint256 gasStart = gasleft(); // gasleft() it's a predefined function in forge std library
                 vm.txGasPrice(GAS);
                 vm.startPrank(fundMe.getOwner()); // here i called the owner of the fundMe contract
                 fundMe.cheaperwithdraw(); // here i called the withdraw function
