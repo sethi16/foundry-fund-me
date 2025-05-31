@@ -19,6 +19,7 @@ contract FundMe {
 
     constructor(address priceFeedAddress) {
         pricefeed = AggregatorV3Interface(priceFeedAddress);
+// Just sets the location of the price feed
         i_owner = msg.sender;
     }
 
