@@ -19,7 +19,14 @@ contract FundMe {
 
     constructor(address priceFeedAddress) {
         pricefeed = AggregatorV3Interface(priceFeedAddress);
+// “I promise that the contract at priceFeedAddress follows the Chainlink AggregatorV3Interface rules — like having latestRoundData(), decimals(), etc.”
+// Just for checking is it follows the chainlink protocole
 // Just sets the location of the price feed
+// In case of inheritance, we can directly call the function,
+// Here, In importing we need to call the contract.function();
+//So, rather than putting AggregatorV3Interface.latestRoundData(pricefeed)
+// We actually did is 'pricefeed' holds the function inside value
+//So, that we directly call pricefeed.latestRoundData(); 
         i_owner = msg.sender;
     }
 
