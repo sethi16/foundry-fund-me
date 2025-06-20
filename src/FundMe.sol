@@ -18,6 +18,8 @@ contract FundMe {
     uint256 public constant MINIMUM_USD = 5 * 10 ** 18;
 
     constructor(address priceFeedAddress) {
+// you must have learnt about casting here the pricefeed is plain we need to convert it into the chainlink AggregatorV3Interface, pricefeed 
+// By casting we converted & now one can use that variable which holds the function of the contract belong to the this AggregatorV3InterfacepriceFeed
         pricefeed = AggregatorV3Interface(priceFeedAddress);
 // “I promise that the contract at priceFeedAddress follows the Chainlink AggregatorV3Interface rules — like having latestRoundData(), decimals(), etc.”
 // Just for checking is it follows the chainlink protocole
